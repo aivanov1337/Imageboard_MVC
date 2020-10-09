@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Website1.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Say hi to everyone</h1>
+@*<div class="container-fluid no-padding">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/Pictures/stripes.gif" alt="placeholder 960" class="img-responsive" width="2500" height="50" />
+        </div>
+    </div>
+</div>*@
+
+@*<div class="container py-3">
+    <div class="row">
+        <div class="col-sm-12">
+            <img src="~/Pictures/stripes.gif" class="img-fluid d-block rounded" width="2500" height="50">
+            <i class="fas fa-caret-square-left fa-2x "></i>
+        </div>
+    </div>
+</div>*@
+
+
+<p>
+
+    <button type="button" class="btn btn-primary">
+        <a asp-action="Create" class="text-white">Create Post</a>
+    </button>
+</p>
+<table class="table table-striped">
+
+    <thead>
+        <tr class="table-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="border-top" ,class="table-dark">
+
+                <td style="word-wrap: break-word;min-width: 80px;max-width: 180px;" class="table-success">
+                    @Html.DisplayFor(modelItem => item.author)
+                </td>
+                <td>
+                    @if (item.image != null)
+                    {
+                        <img src="data:image;base64,@item.image" width="165" height="150" />
+                    }
+                </td>
+                <td style="word-wrap: break-word;min-width: 160px;max-width: 650px;">
+                    @Html.DisplayFor(modelItem => item.message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+ var interval = 5000;
+ setInterval(function() { Update() }, interval);
+
+ function Update(){
+     $.get("/Posts/Index", function(){
+        }
+     );
+ }
+</script>
+
